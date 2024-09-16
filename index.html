@@ -8,10 +8,29 @@
 </head>
 <body>
 
-    <audio id="myAudio" autoplay>
+   <audio id="myAudio" autoplay>
   <source src="m.mp3" type="audio/mp3">
   Your browser does not support the audio element.
 </audio>
+
+<script>
+  // Get the audio element
+  var audioElement = document.getElementById('myAudio');
+
+  // Attempt to play the audio automatically
+  window.onload = function() {
+    audioElement.play().catch(function(error) {
+      // If autoplay fails, log the error and play after user interaction
+      console.log('Autoplay prevented. Will play after user interaction.');
+
+      // Wait for user interaction to play the audio
+      document.body.addEventListener('click', function() {
+        audioElement.play();
+      }, { once: true }); // Make sure it only listens for one click
+    });
+  };
+</script>
+
 
         <div class="carousel">
             <div class="carousel-item">
